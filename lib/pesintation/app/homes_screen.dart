@@ -23,16 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
     Expression exp = p.parse(result);
     ContextModel cm = ContextModel();
     double eval = exp.evaluate(EvaluationType.REAL, cm);
-    setState(() {
-      history = result;
-      result = eval.toString();
-    });
+    if (result.isNotEmpty && exp != null) {
+      setState(() {
+        history += result += '=';
+        result = eval.toString();
+      });
+    } else {
+      print('error');
+    }
   }
 
   void allClear(String text) {
     setState(() {
-      history = '';
-      result = '';
+      history = ' ';
+      result = ' ';
     });
   }
 
@@ -155,19 +159,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       ButtonWidget(
                         backgound: Colors.transparent,
                         txtColor: Colors.white,
-                        txt: '1',
+                        txt: '4',
                         onPressed: valueClick,
                       ),
                       ButtonWidget(
                         backgound: Colors.transparent,
                         txtColor: Colors.white,
-                        txt: '2',
+                        txt: '5',
                         onPressed: valueClick,
                       ),
                       ButtonWidget(
                         backgound: Colors.transparent,
                         txtColor: Colors.white,
-                        txt: '3',
+                        txt: '6',
                         onPressed: valueClick,
                       ),
                       ButtonWidget(
